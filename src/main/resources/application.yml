@@ -1,0 +1,18 @@
+server:
+  port: 13000
+
+eureka:
+  client:
+    # 作为eureka server,而不是eureka client
+    register-with-eureka: false
+      fetch-registry: false
+      service-url:
+        defaultZone: http://localhost:${server.port}/eureka
+      #修改服务注册在注册中心显示的样式
+      instance:
+        prefer-ip-address: true
+        instance-id: ${spring.cloud.client.ipAddress}:${server.port}
+
+  # 关闭保护机制
+#  server:
+#    enable-self-preservation: false
